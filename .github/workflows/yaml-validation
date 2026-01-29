@@ -1,0 +1,23 @@
+#name of workflow
+name: YAML validation
+
+#triggering events on push or pull request
+on:
+  push:
+  pull_request:
+# define the jobs which will run in the workflow
+jobs:
+  yaml-check:
+# runner where the job will run
+    runs-on: ubuntu-latest
+# steps to be executed in order
+    steps:
+    #step 1 checkout the code from repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+    # step 2 install yamllint
+      - name: install yamllint
+        run: sudo apt-get update && sudo apt-get install -y yamllint
+    # step 3 validate yaml files
+      - name: Validate YAML files
+        run: yamllint .
