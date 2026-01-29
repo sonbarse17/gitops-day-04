@@ -1,0 +1,21 @@
+# name of the workflow
+name: CI workflow
+
+# event that will trigger the workflow
+on:
+  push:
+    branches:
+      - main
+# jobs defines what will run in the workflow
+jobs:
+  build:
+  # runner where the job will run (Basically a VM)
+    runs-on: ubuntu-latest
+    # steps are executed in order
+    steps:
+    # step 1 checkout the code from the repository
+      - name: checkout code
+        uses: actions/checkout@v2
+    # run a simple command
+      - name: run a command
+        run: echo "Hello, World!"
