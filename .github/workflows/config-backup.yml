@@ -1,0 +1,25 @@
+# workflow name
+name: config folder backup automation
+
+#trigger workflow on every push
+on:
+  push:
+
+jobs:
+  backup:
+    #use ubuntu server
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+      - name: copy config files to backup folder
+        run: | 
+          mkdir -p backup 
+          cp -r configs/* backup/
+      - name: commit backup files
+        run: |
+          git config --global user.name "sonbarse17"
+          git config --global user.email "sushantsonbarse90@gmail.com"
+          git add backup/
+          git commit -m "auto backup config files" || echo "no changes to commit"
+          git push 
