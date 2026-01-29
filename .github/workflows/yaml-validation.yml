@@ -16,4 +16,4 @@ jobs:
 
       - name: Validate YAML files
         # Added "." to target the current directory and ensured the config string is valid
-        run: 'yamllint -d "{extends: default, ignore: [configs/, backup/]}" ' .
+        run: 'yamllint -d "{extends: default, ignore: [configs/, backup/]}" .'
