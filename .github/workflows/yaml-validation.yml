@@ -20,4 +20,4 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y yamllint
     # step 3 validate yaml files
       - name: Validate YAML files
-        run: yamllint . --exclude configs/ backup/
+        run: yamllint . --exclude configs,backup
