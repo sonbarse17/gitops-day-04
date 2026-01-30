@@ -1,0 +1,23 @@
+# Workflow name
+name: Marketplace Action Demo
+ 
+# Trigger workflow on push
+on:
+  push:
+ 
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      # Marketplace action to fetch repository code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+ 
+      # Custom shell command
+      - name: Show repository files
+        run: ls -la
+ 
+      # Custom shell command using repo content
+      - name: Print message
+        run: echo "Marketplace action and custom steps executed successfully"
