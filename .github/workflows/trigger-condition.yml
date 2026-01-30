@@ -1,0 +1,40 @@
+# Workflow name 
+name: Trigger and Condition Demo
+ 
+# Triggers define when the workflow runs
+on:
+  # Trigger on push only to main branch
+  push:
+    branches:
+      - main
+ 
+  # Trigger when a pull request is opened or updated
+  pull_request:
+ 
+  # Manual trigger from GitHub UI
+  workflow_dispatch:
+ 
+jobs:
+  demo:
+    # Runner used to execute the job
+    runs-on: ubuntu-latest
+ 
+    steps:
+      # Step always runs regardless of trigger
+      - name: Checkout code
+        uses: actions/checkout@v4
+ 
+      # Step runs only on push events
+      - name: Run on push only
+        if: github.event_name == 'push'
+        run: echo "This step runs only for push events"
+ 
+      # Step runs only on pull request events
+      - name: Run on pull request only
+        if: github.event_name == 'pull_request'
+        run: echo "This step runs only for pull requests"
+ 
+      # Step runs only when triggered manually
+      - name: Run on manual trigger
+        if: github.event_name == 'workflow_dispatch'
+        run: echo "This step runs only when triggered manually"
